@@ -50,7 +50,7 @@ class WorldScene extends Phaser.Scene {
         obstacles.setCollisionByExclusion([-1]);
         ridge.setCollisionByExclusion([-1]);
 
-        this.player = this.physics.add.sprite(50, 100, 'player', 6);
+        this.player = this.physics.add.sprite(400, 400, 'player', 6);
         //SET the world bounds to overworld height and width
         this.physics.world.bounds.width = overworld.widthInPixels;
         this.physics.world.bounds.height = overworld.heightInPixels;
