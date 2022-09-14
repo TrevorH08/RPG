@@ -17,7 +17,7 @@ import {ActionsMenu} from './menu.js';
 import {EnemiesMenu} from './menu.js';
 import {HeroesMenu} from './menu.js';
 import {MenuItem} from './menu.js';
-// import desertMusic from './assets/DesertCave.wav';
+import desertMusic from './assets/DesertCave.wav';
 
 
 export class BootScene extends Phaser.Scene{
@@ -50,14 +50,16 @@ export class WorldScene extends Phaser.Scene {
     this.load.tilemapTiledJSON('map', tileMap);
     this.load.spritesheet('player', characterSprite, {frameWidth: 16, frameHeight:20});
     this.load.spritesheet('slime', slimesprite, {frameWidth: 16, frameHeight: 16});
-    // this.load.audio("music", desertMusic);
+    this.load.audio("music", [desertMusic]);
   }
 
   create(){
     //Create world here
-    // overworld1Music = this.sound.add("music", {loop: true});
+    const overworld1Music = this.sound.add("music", {loop: true});
+    this.overworld1Music = overworld1Music;
+
     //add tile sets! they load in order
-    // overworld1Music.play();
+    this.overworld1Music.play();
     const overworld = this.make.tilemap({key: 'map'});
     const tiles = overworld.addTilesetImage('Set_A_Desert1', 'tiles');
 
@@ -144,6 +146,7 @@ export class WorldScene extends Phaser.Scene {
   }
   
   wake(){
+    this.overworld1Music.resume();
     this.cursors.left.reset();
     this.cursors.right.reset();
     this.cursors.up.reset();
@@ -161,6 +164,7 @@ export class WorldScene extends Phaser.Scene {
 
    //start battle
     this.scene.switch('BattleScene');
+    this.overworld1Music.pause();
   }
 
   update(time, delta){

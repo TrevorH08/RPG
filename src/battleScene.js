@@ -16,6 +16,8 @@ import {ActionsMenu} from './menu.js';
 import {EnemiesMenu} from './menu.js';
 import {HeroesMenu} from './menu.js';
 import {MenuItem} from './menu.js';
+import battleMusic from './assets/DesertCaveBattle.wav';
+
 export class BattleScene extends Phaser.Scene{
   constructor(){
     super({
@@ -28,6 +30,7 @@ export class BattleScene extends Phaser.Scene{
     this.load.image('redSlime', redslime);
     this.load.spritesheet('noble', noble, {frameWidth:16, frameHeight:21});
 	  this.load.spritesheet('monarch', characterSprite, {frameWidth:16, frameHeight:21});
+    this.load.audio('battleMusic', [battleMusic]);
   }
 
   exitBattle(){
@@ -36,6 +39,9 @@ export class BattleScene extends Phaser.Scene{
   }
 
   create(/*player*/){
+    const battleMusic = this.sound.add('battleMusic', {loop: true});
+    this.battleMusic = battleMusic;
+    battleMusic.play();
     console.log("battle scene create");
     console.log("party 1 " + this.party1);
     console.log("party 2 " + this.party2);
@@ -126,7 +132,8 @@ export class BattleScene extends Phaser.Scene{
     //Sleep the UI 
     this.scene.sleep('UIScene');
     //Return to WorldScene and sleep current BattleScene 
-    this.scene.switch('WorldScene'); 
+    this.scene.switch('WorldScene');
+    this.battleMusic.pause();
   } 
 
   receivePlayerSelection(action, target){
