@@ -422,7 +422,7 @@
         {
          "columns":16,
          "firstgid":1,
-         "image":"..\/Downloads\/sewer_1.png",
+         "image":"..\/sewer_1.png",
          "imageheight":352,
          "imagewidth":256,
          "margin":0,
@@ -442,11 +442,11 @@
         {
          "columns":7,
          "firstgid":353,
-         "image":"..\/Downloads\/objects.png",
+         "image":"..\/sewer_objects.png",
          "imageheight":112,
          "imagewidth":112,
          "margin":0,
-         "name":"objects",
+         "name":"sewer_objects",
          "spacing":0,
          "tilecount":49,
          "tileheight":16,

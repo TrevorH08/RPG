@@ -43,6 +43,7 @@ export class BattleScene extends Phaser.Scene{
   }
 
   create(arguement){
+    console.log('battle scene created')
     console.log(arguement)
     this.health = arguement;
     const swish2 = this.sound.add('swish2', {loop: false});
@@ -55,7 +56,9 @@ export class BattleScene extends Phaser.Scene{
     console.log("party 2 " + this.party2);
     // change the background to tan
     this.cameras.main.setBackgroundColor('rgba(210, 180, 140, 0.5)');
+    console.log("hi youtube")
     this.startBattle();
+    console.log("remember to like comment and subscribe")
     this.sys.events.on('wake', this.startBattle, this);
 
   }
@@ -106,15 +109,16 @@ export class BattleScene extends Phaser.Scene{
     return victory || gameOver; 
   } 
 
-  startBattle(){
+  startBattle(argument){
     console.log('start battle');
-    
+    console.log(argument);
+    this.battleMusic.play();
     const monarch = new PlayerCharacter(this, 600, 100, 'monarch', 3, 'Monarch', this.health, 20);
     const noble = new PlayerCharacter(this, 600, 200, 'noble', 3, 'Noble', 80, 8);
-    const slime1 = new Enemy(this, 200, 100, 'greenSlime', null, 'Green Slime', 28, 3);
-    const slime2 = new Enemy(this, 160, 200, 'redSlime', null,'Red Slime', 28, 3);
+    const slime1 = new Enemy(this, 200, 100, 'greenSlime', null, 'Green Slime', 2, 3);
+    const slime2 = new Enemy(this, 160, 200, 'redSlime', null,'Red Slime', 2, 3);
     this.add.existing(monarch); //we'll keep this line tho
-    console.log(monarch.hp)
+    console.log(monarch.hp);
     this.add.existing(noble);
     this.add.existing(slime1);
     this.add.existing(slime2);
@@ -142,7 +146,7 @@ export class BattleScene extends Phaser.Scene{
     //Sleep the UI 
     this.scene.sleep('UIScene');
     //Return to WorldScene and sleep current BattleScene 
-    this.scene.switch('WorldScene'/*, this.monarch.hp*/); //DO WE NEED TO SEND OUT THE HP HERE?
+    this.scene.switch('WorldScene', /*{arg:'teststring'}/*, this.monarch.hp*/); //DO WE NEED TO SEND OUT THE HP HERE?
     this.battleMusic.pause();
   } 
 
@@ -156,8 +160,9 @@ export class BattleScene extends Phaser.Scene{
   } 
 
   wake(){
+    console.log('battle wake');
     this.scene.run('UIScene');
-    this.time.addEvent({delay: 2000, callback:this.exitBattle, callbackScope: this});
+    //this.time.addEvent({delay: 2000, callback:this.exitBattle, callbackScope: this});
   }
 }
 

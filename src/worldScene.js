@@ -10,6 +10,7 @@ import {Unit} from './unit.js';
 import {Enemy} from './unit.js';
 import {PlayerCharacter} from './unit.js';
 import {BattleScene} from './battleScene.js';
+import {SewerScene} from './sewerScene.js';
 import {UIScene} from './ui.js';
 import {Message} from './ui.js';
 import {Menu} from './menu.js';
@@ -53,11 +54,15 @@ export class WorldScene extends Phaser.Scene {
     this.load.audio('music', [desertMusic]);
   }
 
-  create(){
+  create(arguement){
     //Create world here
+    console.log("create function ran")
     const overworld1Music = this.sound.add('music', {loop: true});
     this.overworld1Music = overworld1Music;
-    this.health = 90
+    if (!this.health) { 
+      this.health = 90
+    }
+    
     //add tile sets! they load in order
     this.overworld1Music.play();
     const overworld = this.make.tilemap({key: 'map'});
@@ -170,17 +175,19 @@ export class WorldScene extends Phaser.Scene {
 
     this.warp = this.physics.add.group({classType: Phaser.GameObjects.Zone });
     this.warp.create(440, 275, 16, 16);
-    this.physics.add.overlap(this.warp, this.player, this.warpSewer);
+    this.physics.add.overlap(this.warp, this.player, this.warpSewer, false, this);
 
 
   }
 
   warpSewer(player, warp) {
     console.log("we go to the rats now");
+    this.scene.start('SewerScene');
   }
   
-  wake(/*arguement*/){
+  wake(){
     //bring out the hp value
+    console.log("wake function happens")
     // this.health = arguement
     // console.log("hp should have transferred: " + this.health)
     this.overworld1Music.resume();
@@ -207,7 +214,7 @@ export class WorldScene extends Phaser.Scene {
 
    //start battle
    //this.time.delayedCall(500, this.scene.switch, ['BattleScene'], this);
-   this.scene.start('BattleScene', this.health);
+   this.scene.switch('BattleScene', this.health);
    this.overworld1Music.pause();
   }
 

@@ -22,6 +22,7 @@ import {HeroesMenu} from './menu.js';
 import {MenuItem} from './menu.js';
 import {WorldScene} from './worldscene.js';
 import {StartScene} from './title.js';
+import {SewerScene} from './sewerScene.js';
 
 const config = {
   type: Phaser.AUTO,
@@ -40,6 +41,7 @@ const config = {
     WorldScene,
     BattleScene,
     UIScene,
+    SewerScene
   ]
 };
 
