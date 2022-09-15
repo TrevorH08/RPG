@@ -1,11 +1,4 @@
 import Phaser from 'phaser';
-import worldTiles from './assets/Set_A_Desert1.png';
-import tileMap from './assets/RPG-Map-1-embed.json';
-import greenslime from './assets/02_SmallSlime_A.png';
-import redslime from './assets/02_SmallSlime_B.png';
-import slimesprite from './assets/Slime_1.png'
-import characterSprite from './assets/Monarch_M1.png';
-import noble from './assets/Noble_M1.png';
 import {Unit} from './unit.js';
 import {Enemy} from './unit.js';
 import {PlayerCharacter} from './unit.js';
@@ -72,7 +65,7 @@ export class UIScene extends Phaser.Scene{
     this.add.existing(this.message);
     this.createMenu();
   }
-  
+
   createMenu() {
     //RESET hero/enemies arrays
     this.remapHeroes();
@@ -142,11 +135,11 @@ export class Message extends Phaser.GameObjects.Container{
 
   showMessage(text){
     this.text.setText(text);
-        this.visible = true;
-        if(this.hideEvent){
-          this.hideEvent.remove(false);
-        }
-        this.hideEvent = this.scene.time.addEvent({ delay: 2000, callback: this.hideMessage, callbackScope: this });
+    this.visible = true;
+    if(this.hideEvent){
+      this.hideEvent.remove(false);
+    }
+    this.hideEvent = this.scene.time.addEvent({ delay: 2000, callback: this.hideMessage, callbackScope: this });
   }
   hideMessage(){
     this.hideEvent = null;

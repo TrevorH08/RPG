@@ -1,11 +1,8 @@
 import Phaser from 'phaser';
 import worldTiles from './assets/Set_A_Desert1.png';
 import tileMap from './assets/RPG-Map-1-embed.json';
-import greenslime from './assets/02_SmallSlime_A.png';
-import redslime from './assets/02_SmallSlime_B.png';
 import slimesprite from './assets/Slime_1.png'
 import characterSprite from './assets/Monarch_M1.png';
-import noble from './assets/Noble_M1.png';
 import {Unit} from './unit.js';
 import {Enemy} from './unit.js';
 import {PlayerCharacter} from './unit.js';
@@ -20,18 +17,15 @@ import {HeroesMenu} from './menu.js';
 import {MenuItem} from './menu.js';
 import desertMusic from './assets/DesertCave.wav';
 
-
 export class StartScene extends Phaser.Scene{
   constructor(){
     super({
-        key: 'BootScene'
+      key: 'BootScene'
     });
   }
-
   preload(){
 
   }
-
   create(){
     this.scene.start('WorldScene');
   }
@@ -40,10 +34,9 @@ export class StartScene extends Phaser.Scene{
 export class WorldScene extends Phaser.Scene {
   constructor(){
     super({
-        key: 'WorldScene'
+      key: 'WorldScene'
     });
   }
-  
 
   preload(){
     //load resources
@@ -63,7 +56,6 @@ export class WorldScene extends Phaser.Scene {
       this.health = 90
     }
     
-    //add tile sets! they load in order
     this.overworld1Music.play();
     const overworld = this.make.tilemap({key: 'map'});
     const tiles = overworld.addTilesetImage('Set_A_Desert1', 'tiles');
@@ -99,60 +91,57 @@ export class WorldScene extends Phaser.Scene {
     this.cameras.main.startFollow(this.player);
     this.cameras.main.roundPixels = true; //hack to prevent tile bleeding
 
-
     //animations with key left
     this.anims.create({
-        key: 'left',
-        frames: this.anims.generateFrameNumbers('player', {
-            frames: [3, 4, 5]
-        }),
-        frameRate: 10,
-        repeat: -1
+      key: 'left',
+      frames: this.anims.generateFrameNumbers('player', {
+        frames: [3, 4, 5]
+      }),
+      frameRate: 10,
+      repeat: -1
     });
 
     this.anims.create({
-        key: 'right',
-        frames: this.anims.generateFrameNumbers('player', {
-            frames: [6, 7, 8]
-        }),
-        frameRate: 10,
-        repeat: -1
+      key: 'right',
+      frames: this.anims.generateFrameNumbers('player', {
+        frames: [6, 7, 8]
+      }),
+      frameRate: 10,
+      repeat: -1
     });
 
     this.anims.create({
-        key: 'up',
-        frames: this.anims.generateFrameNumbers('player', {
-            frames: [9, 10, 11]
-        }), 
-        frameRate: 10,
-        repeat: -1
+      key: 'up',
+      frames: this.anims.generateFrameNumbers('player', {
+        frames: [9, 10, 11]
+      }), 
+      frameRate: 10,
+      repeat: -1
     });
 
     this.anims.create({
-        key:'down',
-        frames: this.anims.generateFrameNumbers('player', {
-            frames: [0, 1, 2]
-        }),
-        frameRate: 10,
-        repeat: -1
+      key:'down',
+      frames: this.anims.generateFrameNumbers('player', {
+        frames: [0, 1, 2]
+      }),
+      frameRate: 10,
+      repeat: -1
     });
 
     this.anims.create({
       key: 'slimeMove',
       frames: this.anims.generateFrameNumbers('slime', {
         frames: [0, 1, 2]
-        }),
+      }),
       frameRate: 10,
       repeat: -1
-      });
+    });
 
-
-      this.emptyTiles = obstacles.getTilesWithin().filter(function(tile){
-        if(tile.index === -1){
-          return true;
-        }
-      });
-    
+    this.emptyTiles = obstacles.getTilesWithin().filter(function(tile){
+      if(tile.index === -1){
+        return true;
+      }
+    });
 
     //spawns enemy slimes randomly
     //spawns enemy slimes randomly
@@ -176,8 +165,6 @@ export class WorldScene extends Phaser.Scene {
     this.warp = this.physics.add.group({classType: Phaser.GameObjects.Zone });
     this.warp.create(440, 275, 16, 16);
     this.physics.add.overlap(this.warp, this.player, this.warpSewer, false, this);
-
-
   }
 
   warpSewer(player, warp) {
@@ -198,7 +185,6 @@ export class WorldScene extends Phaser.Scene {
   }
 
   onMeetEnemy(player, zone){
-    
     //moves that zone to another location
     //need to change slimes to spawn not outside the zone
     let randomTile = Phaser.Utils.Array.GetRandom(this.emptyTiles);
@@ -212,38 +198,38 @@ export class WorldScene extends Phaser.Scene {
     //camera shake
     this.cameras.main.shake(300);
 
-   //start battle
-   //this.time.delayedCall(500, this.scene.switch, ['BattleScene'], this);
-   this.scene.switch('BattleScene', this.health);
-   this.overworld1Music.pause();
+  //start battle
+  //this.time.delayedCall(500, this.scene.switch, ['BattleScene'], this);
+  this.scene.switch('BattleScene', this.health);
+  this.overworld1Music.pause();
   }
 
   update(time, delta){
     this.player.body.setVelocity(0);
     //horizontal movement
     if (this.cursors.left.isDown){
-        this.player.body.setVelocityX(-80);
+      this.player.body.setVelocityX(-80);
     } else if (this.cursors.right.isDown){
-        this.player.body.setVelocityX(80);
+      this.player.body.setVelocityX(80);
     }
     //vertical movement
     if (this.cursors.up.isDown){
-        this.player.body.setVelocityY(-80);
+      this.player.body.setVelocityY(-80);
     } else if (this.cursors.down.isDown){
-        this.player.body.setVelocityY(80);
+      this.player.body.setVelocityY(80);
     }
 
     //movement animation
     if(this.cursors.left.isDown){
-        this.player.anims.play('left', true);
+      this.player.anims.play('left', true);
     } else if (this.cursors.right.isDown){
-        this.player.anims.play('right', true);
+      this.player.anims.play('right', true);
     } else if (this.cursors.up.isDown){
-        this.player.anims.play('up', true);
+      this.player.anims.play('up', true);
     } else if (this.cursors.down.isDown){
-        this.player.anims.play('down', true);
+      this.player.anims.play('down', true);
     } else {
-        this.player.anims.stop();
+      this.player.anims.stop();
     }
   }
 }

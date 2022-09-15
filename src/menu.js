@@ -1,11 +1,4 @@
 import Phaser from 'phaser';
-import worldTiles from './assets/Set_A_Desert1.png';
-import tileMap from './assets/RPG-Map-1-embed.json';
-import greenslime from './assets/02_SmallSlime_A.png';
-import redslime from './assets/02_SmallSlime_B.png';
-import slimesprite from './assets/Slime_1.png'
-import characterSprite from './assets/Monarch_M1.png';
-import noble from './assets/Noble_M1.png';
 import {Unit} from './unit.js';
 import {Enemy} from './unit.js';
 import {PlayerCharacter} from './unit.js';
@@ -19,11 +12,11 @@ export class MenuItem extends Phaser.GameObjects.Text{
     super(scene, x, y, text, {color: '#ffffff', align: 'left', fontSize: 28});
   }
 
-  select() {
+  select() { //turns yellow for "selected"
     this.setColor('#f8ff38');
   }
 
-  deselect() {
+  deselect() { //turns white for "deselected"
     this.setColor('#ffffff');
   }
 
