@@ -49,6 +49,8 @@ This is a simple turn based RPG game made with Phaser.js. The player spawns on t
 * different stages
 * damage/enemy randomness
 * other options than attack
+* battle sfx
+
 ## Known Bugs
 
 * screen shakes after battle, not before
