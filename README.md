@@ -20,7 +20,6 @@
 * Overworld and Battle Music By: Jordan Atkins
 * Font: Adventurer by Brian J Smith from [pentacom.jp BitFontMaker2](https://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=195) https://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=195
 * Swish sound effects from [Battle Sound Effects by artisticdude](https://opengameart.org/content/battle-sound-effects) https://opengameart.org/content/battle-sound-effects
-* https://opengameart.org/content/slime-monster
 * Title theme by [Alexandr Zhelanov](https://soundcloud.com/alexandr-zhelanov) https://soundcloud.com/alexandr-zhelanov
 
 ## Description
