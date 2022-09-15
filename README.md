@@ -12,6 +12,8 @@
 * Webpack
 * Babel
 
+* Phaser3 webpack project template https://github.com/photonstorm/phaser3-project-template
+
 ## Asset Used
 * SeraphCircle [Monster Pack 1](https://seraphcircle.itch.io/sc-monster-pack-1) https://seraphcircle.itch.io/sc-monster-pack-1
 * Tiny Tales [Overworld Tiles](https://megatiles.itch.io/tiny-tales-overworld-2d-tileset-asset-pack) https://megatiles.itch.io/tiny-tales-overworld-2d-tileset-asset-pack
