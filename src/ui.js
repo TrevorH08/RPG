@@ -15,6 +15,7 @@ import {ActionsMenu} from './menu.js';
 import {EnemiesMenu} from './menu.js';
 import {HeroesMenu} from './menu.js';
 import {MenuItem} from './menu.js';
+import {WorldScene} from './worldscene.js';
 
 export class UIScene extends Phaser.Scene{
   constructor(){
@@ -145,7 +146,7 @@ export class Message extends Phaser.GameObjects.Container{
         if(this.hideEvent){
           this.hideEvent.remove(false);
         }
-        this.hideEvent = this.scene.time.addEvent({ delay: 2500, callback: this.hideMessage, callbackScope: this });
+        this.hideEvent = this.scene.time.addEvent({ delay: 2000, callback: this.hideMessage, callbackScope: this });
   }
   hideMessage(){
     this.hideEvent = null;

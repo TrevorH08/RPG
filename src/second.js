@@ -360,20 +360,3 @@ var UIScene = new Phaser.Class({
 });
 
 
-var config = {
-  type: Phaser.AUTO,
-  parent: 'content',
-  width: 800,
-  height: 480,
-  zoom: 2,
-  pixelArt: true,
-  physics: {
-      default: 'arcade',
-      arcade: {
-          gravity: { y: 0 }
-      }
-  },
-  scene: [ BootScene, BattleScene, UIScene ]
-};
-
-var game = new Phaser.Game(config);

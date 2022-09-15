@@ -17,6 +17,8 @@ import {EnemiesMenu} from './menu.js';
 import {HeroesMenu} from './menu.js';
 import {MenuItem} from './menu.js';
 import battleMusic from './assets/DesertCaveBattle.wav';
+import swish2 from './assets/swish_2.wav';
+import swish4 from './assets/swish_4.wav';
 
 export class BattleScene extends Phaser.Scene{
   constructor(){
@@ -31,6 +33,8 @@ export class BattleScene extends Phaser.Scene{
     this.load.spritesheet('noble', noble, {frameWidth:16, frameHeight:21});
 	  this.load.spritesheet('monarch', characterSprite, {frameWidth:16, frameHeight:21});
     this.load.audio('battleMusic', [battleMusic]);
+    this.load.audio('swish2', [swish2]);
+    this.load.audio('swish4', [swish4]);
   }
 
   exitBattle(){
@@ -38,7 +42,11 @@ export class BattleScene extends Phaser.Scene{
     this.scene.switch('WorldScene');
   }
 
-  create(/*player*/){
+  create(arguement){
+    console.log(arguement)
+    this.health = arguement;
+    const swish2 = this.sound.add('swish2', {loop: false});
+    this.swish2 = swish2;
     const battleMusic = this.sound.add('battleMusic', {loop: true});
     this.battleMusic = battleMusic;
     battleMusic.play();
@@ -100,11 +108,13 @@ export class BattleScene extends Phaser.Scene{
 
   startBattle(){
     console.log('start battle');
-    const monarch = new PlayerCharacter(this, 600, 100, 'monarch', 3, 'Monarch', 100, 20);
+    
+    const monarch = new PlayerCharacter(this, 600, 100, 'monarch', 3, 'Monarch', this.health, 20);
     const noble = new PlayerCharacter(this, 600, 200, 'noble', 3, 'Noble', 80, 8);
-    const slime1 = new Enemy(this, 200, 100, 'greenSlime', null, 'Green Slime', 29, 3);
-    const slime2 = new Enemy(this, 160, 200, 'redSlime', null,'Red Slime', 29, 3);
+    const slime1 = new Enemy(this, 200, 100, 'greenSlime', null, 'Green Slime', 28, 3);
+    const slime2 = new Enemy(this, 160, 200, 'redSlime', null,'Red Slime', 28, 3);
     this.add.existing(monarch); //we'll keep this line tho
+    console.log(monarch.hp)
     this.add.existing(noble);
     this.add.existing(slime1);
     this.add.existing(slime2);
@@ -132,7 +142,7 @@ export class BattleScene extends Phaser.Scene{
     //Sleep the UI 
     this.scene.sleep('UIScene');
     //Return to WorldScene and sleep current BattleScene 
-    this.scene.switch('WorldScene');
+    this.scene.switch('WorldScene'/*, this.monarch.hp*/); //DO WE NEED TO SEND OUT THE HP HERE?
     this.battleMusic.pause();
   } 
 
