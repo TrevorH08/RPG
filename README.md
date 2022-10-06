@@ -32,7 +32,7 @@ This is a simple turn based RPG game made with Phaser.js. The player spawns on t
 
 ### Website
 
-* TBA
+* https://doublespoiler.github.io/rpg-team-week/
 
 ### Requirements
 
